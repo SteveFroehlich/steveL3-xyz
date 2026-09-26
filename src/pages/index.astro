@@ -1,0 +1,137 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import WritingCard from '../components/WritingCard.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { getFeaturedWriting } from '../lib/writing';
+import { getFeaturedProjects } from '../lib/projects';
+
+const featuredWriting = await getFeaturedWriting(3);
+const featuredProjects = await getFeaturedProjects(4);
+---
+
+<BaseLayout>
+  <section class="hero site-shell">
+    <p class="meta hero__eyebrow">SteveL3</p>
+    <h1 class="hero__name">Steve Froehlich</h1>
+    <p class="hero__lede">
+      Engineering leader exploring emerging technology, organization design, and the
+      institutions we build.
+    </p>
+    <div class="hero__actions">
+      <a class="hero__action" href="/writing">Writing</a>
+      <a class="hero__action hero__action--secondary" href="/projects">Projects</a>
+    </div>
+  </section>
+
+  <section class="section site-shell" aria-labelledby="selected-writing">
+    <p class="section__label">Selected writing</p>
+    <h2 id="selected-writing" class="section__title">Recent thinking</h2>
+    <div>
+      {featuredWriting.map((entry) => <WritingCard entry={entry} body={entry.body} />)}
+    </div>
+  </section>
+
+  {
+    featuredProjects.length > 0 && (
+      <section class="section site-shell" aria-labelledby="selected-projects">
+        <p class="section__label">Selected projects</p>
+        <h2 id="selected-projects" class="section__title">Selected work</h2>
+        <div>
+          {featuredProjects.map((entry) => (
+            <ProjectCard entry={entry} />
+          ))}
+        </div>
+      </section>
+    )
+  }
+
+  <section class="section site-shell identity" aria-labelledby="identity">
+    <p class="section__label">Identity</p>
+    <h2 id="identity" class="section__title">Professional context</h2>
+    <div class="identity__copy">
+      <p>
+        Steve works at the intersection of engineering leadership and systems that have to
+        hold up under real-world constraints — product systems, organizations, and the
+        institutions around them.
+      </p>
+      <p>
+        This site is a public cache of that work: durable writing first, selected projects
+        second, and enough context to understand how he thinks.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    min-height: calc(100svh - 3.75rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-block: var(--space-8);
+  }
+
+  .hero__eyebrow {
+    margin: 0 0 var(--space-4);
+  }
+
+  .hero__name {
+    margin: 0 0 var(--space-4);
+    font-size: var(--text-3xl);
+    max-width: 12ch;
+  }
+
+  .hero__lede {
+    margin: 0 0 var(--space-6);
+    max-width: 28rem;
+    font-size: var(--text-lg);
+    color: var(--color-ink-muted);
+    line-height: var(--leading-snug);
+  }
+
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+
+  .hero__action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.75rem;
+    padding: 0 var(--space-4);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: white;
+    background: var(--color-ink);
+    border: 1px solid var(--color-ink);
+  }
+
+  .hero__action:hover {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    color: white;
+  }
+
+  .hero__action--secondary {
+    color: var(--color-ink);
+    background: transparent;
+  }
+
+  .hero__action--secondary:hover {
+    color: white;
+  }
+
+  .identity__copy {
+    max-width: 38rem;
+    color: var(--color-ink-muted);
+  }
+
+  .identity__copy p:last-child {
+    margin-bottom: 0;
+  }
+</style>

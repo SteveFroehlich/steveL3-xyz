@@ -1,0 +1,78 @@
+---
+import type { WritingEntry } from '../lib/writing';
+import { formatDate, getReadingMinutes, slugifyTag } from '../lib/writing';
+
+interface Props {
+  entry: WritingEntry;
+  body?: string;
+}
+
+const { entry, body = '' } = Astro.props;
+const reading = getReadingMinutes(body || entry.body);
+---
+
+<article class="writing-card">
+  <h3 class="writing-card__title">
+    <a href={`/writing/${entry.id}`}>{entry.data.title}</a>
+  </h3>
+  <p class="writing-card__description">{entry.data.description}</p>
+  <p class="meta writing-card__meta">
+    <time datetime={entry.data.publishedAt.toISOString()}>
+      {formatDate(entry.data.publishedAt)}
+    </time>
+    <span aria-hidden="true">·</span>
+    <span>{reading}</span>
+  </p>
+  {
+    entry.data.tags.length > 0 && (
+      <ul class="tag-list">
+        {entry.data.tags.map((tag) => (
+          <li>
+            <a class="tag" href={`/tags/${slugifyTag(tag)}`}>
+              {tag}
+            </a>
+          </li>
+        ))}
+      </ul>
+    )
+  }
+</article>
+
+<style>
+  .writing-card {
+    display: grid;
+    gap: var(--space-3);
+    padding-block: var(--space-5);
+  }
+
+  .writing-card + .writing-card {
+    border-top: 1px solid var(--color-line);
+  }
+
+  .writing-card__title {
+    margin: 0;
+    font-size: var(--text-lg);
+  }
+
+  .writing-card__title a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .writing-card__title a:hover {
+    color: var(--color-accent);
+  }
+
+  .writing-card__description {
+    margin: 0;
+    color: var(--color-ink-muted);
+    max-width: 40rem;
+  }
+
+  .writing-card__meta {
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+</style>

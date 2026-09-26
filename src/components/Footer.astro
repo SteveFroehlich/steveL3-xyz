@@ -1,0 +1,41 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="site-shell site-footer__inner">
+    <p class="site-footer__copy">
+      <span class="meta">L1 → L2 → L3</span>
+      <span>© {year} Steve Froehlich</span>
+    </p>
+    <p class="site-footer__note meta">Public cache · stevel3.xyz</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    margin-top: auto;
+    border-top: 1px solid var(--color-line);
+    padding-block: var(--space-6);
+  }
+
+  .site-footer__inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--space-3);
+  }
+
+  .site-footer__copy {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin: 0;
+    color: var(--color-ink-muted);
+    font-size: var(--text-sm);
+  }
+
+  .site-footer__note {
+    margin: 0;
+  }
+</style>

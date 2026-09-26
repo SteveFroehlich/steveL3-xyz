@@ -1,0 +1,91 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import { formatDate, getReadingMinutes, slugifyTag } from '../lib/writing';
+import type { WritingEntry } from '../lib/writing';
+
+interface Props {
+  entry: WritingEntry;
+}
+
+const { entry } = Astro.props;
+const { title, description, publishedAt, tags } = entry.data;
+const primaryTag = tags[0] ?? 'writing';
+const reading = getReadingMinutes(entry.body);
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath={`/writing/${entry.id}`}
+  type="article"
+  publishedAt={publishedAt}
+>
+  <article class="article site-shell">
+    <header class="article__header">
+      <p class="meta article__channel">
+        Writing / {primaryTag}
+      </p>
+      <h1 class="article__title">{title}</h1>
+      <p class="article__description">{description}</p>
+      <p class="meta article__meta">
+        <time datetime={publishedAt.toISOString()}>{formatDate(publishedAt)}</time>
+        <span aria-hidden="true">·</span>
+        <span>{reading}</span>
+      </p>
+      {
+        tags.length > 0 && (
+          <ul class="tag-list article__tags">
+            {tags.map((tag) => (
+              <li>
+                <a class="tag" href={`/tags/${slugifyTag(tag)}`}>
+                  {tag}
+                </a>
+              </li>
+            ))}
+          </ul>
+        )
+      }
+    </header>
+    <div class="prose article__body">
+      <slot />
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .article {
+    padding-block: var(--space-7) var(--space-9);
+  }
+
+  .article__header {
+    max-width: var(--measure);
+    margin-bottom: var(--space-7);
+  }
+
+  .article__channel {
+    margin: 0 0 var(--space-4);
+  }
+
+  .article__title {
+    margin: 0 0 var(--space-4);
+    font-size: var(--text-3xl);
+  }
+
+  .article__description {
+    margin: 0 0 var(--space-4);
+    color: var(--color-ink-muted);
+    font-size: var(--text-lg);
+    max-width: 36rem;
+  }
+
+  .article__meta {
+    margin: 0 0 var(--space-4);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .article__tags {
+    margin-top: var(--space-2);
+  }
+</style>

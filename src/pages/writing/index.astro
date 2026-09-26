@@ -1,0 +1,47 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import WritingCard from '../../components/WritingCard.astro';
+import { getPublishedWriting } from '../../lib/writing';
+
+const writing = await getPublishedWriting();
+---
+
+<BaseLayout
+  title="Writing"
+  description="Essays and technical writing from Steve Froehlich."
+  canonicalPath="/writing"
+>
+  <section class="page site-shell">
+    <header class="page__header">
+      <p class="section__label">Writing</p>
+      <h1 class="page__title">Writing</h1>
+      <p class="page__lede">
+        Durable thinking on software systems, organizations, and institutions.
+      </p>
+    </header>
+    <div>
+      {writing.map((entry) => <WritingCard entry={entry} body={entry.body} />)}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page {
+    padding-block: var(--space-7) var(--space-9);
+  }
+
+  .page__header {
+    margin-bottom: var(--space-6);
+    max-width: 36rem;
+  }
+
+  .page__title {
+    margin: 0 0 var(--space-3);
+    font-size: var(--text-3xl);
+  }
+
+  .page__lede {
+    margin: 0;
+    color: var(--color-ink-muted);
+  }
+</style>

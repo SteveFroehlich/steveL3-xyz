@@ -1,0 +1,55 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import WritingCard from '../../components/WritingCard.astro';
+import { getAllTags } from '../../lib/writing';
+
+export async function getStaticPaths() {
+  const tags = await getAllTags();
+  return [...tags.entries()].map(([tag, entries]) => ({
+    params: { tag },
+    props: { tag, entries },
+  }));
+}
+
+const { tag, entries } = Astro.props;
+const label = tag.replace(/-/g, ' ');
+---
+
+<BaseLayout
+  title={`Tag: ${label}`}
+  description={`Writing tagged ${label} on SteveL3.`}
+  canonicalPath={`/tags/${tag}`}
+>
+  <section class="page site-shell">
+    <header class="page__header">
+      <p class="section__label">Tags / {tag}</p>
+      <h1 class="page__title">{label}</h1>
+      <p class="page__lede">Published writing tagged with this topic.</p>
+    </header>
+    <div>
+      {entries.map((entry) => <WritingCard entry={entry} body={entry.body} />)}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page {
+    padding-block: var(--space-7) var(--space-9);
+  }
+
+  .page__header {
+    margin-bottom: var(--space-6);
+    max-width: 36rem;
+  }
+
+  .page__title {
+    margin: 0 0 var(--space-3);
+    font-size: var(--text-3xl);
+    text-transform: capitalize;
+  }
+
+  .page__lede {
+    margin: 0;
+    color: var(--color-ink-muted);
+  }
+</style>
