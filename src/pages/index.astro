@@ -12,10 +12,10 @@ const featuredProjects = await getFeaturedProjects(4);
 <BaseLayout>
   <section class="hero site-shell">
     <p class="meta hero__eyebrow">SteveL3</p>
-    <h1 class="hero__name">Steve Froehlich</h1>
+    <h1 class="hero__name">Steve L3</h1>
     <p class="hero__lede">
-      Engineering leader exploring emerging technology, organization design, and the
-      institutions we build.
+
+      Explorations in emerging software methods and tools. Sharing learnings from organizational design—across corporations, startups, and civic institutions.
     </p>
     <div class="hero__actions">
       <a class="hero__action" href="/writing">Writing</a>
@@ -50,13 +50,13 @@ const featuredProjects = await getFeaturedProjects(4);
     <h2 id="identity" class="section__title">Professional context</h2>
     <div class="identity__copy">
       <p>
-        Steve works at the intersection of engineering leadership and systems that have to
-        hold up under real-world constraints — product systems, organizations, and the
-        institutions around them.
+        Professional work at the intersection of leadership and systems thinking.
+
+        This site is a public cache of that work: durable writing first, selected projects
+        second, and enough context to understand the thought behind them.
       </p>
       <p>
-        This site is a public cache of that work: durable writing first, selected projects
-        second, and enough context to understand how he thinks.
+        For more content see <a href="https://www.linkedin.com/in/steve-froehlich-8071a125">LinkedIn</a>
       </p>
     </div>
   </section>
@@ -85,7 +85,7 @@ const featuredProjects = await getFeaturedProjects(4);
     margin: 0 0 var(--space-6);
     max-width: 28rem;
     font-size: var(--text-lg);
-    color: var(--color-ink-muted);
+    color: var(--color-lede);
     line-height: var(--leading-snug);
   }
 
@@ -106,7 +106,7 @@ const featuredProjects = await getFeaturedProjects(4);
     letter-spacing: 0.1em;
     text-transform: uppercase;
     text-decoration: none;
-    color: white;
+    color: var(--color-inverse);
     background: var(--color-ink);
     border: 1px solid var(--color-ink);
   }
@@ -114,7 +114,7 @@ const featuredProjects = await getFeaturedProjects(4);
   .hero__action:hover {
     background: var(--color-accent);
     border-color: var(--color-accent);
-    color: white;
+    color: var(--color-inverse);
   }
 
   .hero__action--secondary {
@@ -123,7 +123,7 @@ const featuredProjects = await getFeaturedProjects(4);
   }
 
   .hero__action--secondary:hover {
-    color: white;
+    color: var(--color-inverse);
   }
 
   .identity__copy {

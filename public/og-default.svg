@@ -1,13 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" fill="none">
-  <rect width="1200" height="630" fill="#eef2f5"/>
-  <rect x="0" y="0" width="1200" height="630" fill="url(#grid)" opacity="0.45"/>
+  <rect width="1200" height="630" fill="#020617"/>
+  <rect x="0" y="0" width="1200" height="630" fill="url(#grid)" opacity="0.4"/>
   <defs>
     <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
-      <path d="M48 0H0V48" fill="none" stroke="#c5ced8" stroke-width="1"/>
+      <path d="M48 0H0V48" fill="none" stroke="#1e293b" stroke-width="1"/>
     </pattern>
   </defs>
-  <text x="96" y="220" font-family="ui-monospace, monospace" font-size="28" fill="#1f5f8b" letter-spacing="4">L3</text>
-  <text x="96" y="310" font-family="Georgia, serif" font-size="72" font-weight="600" fill="#1a2330">SteveL3</text>
-  <text x="96" y="380" font-family="Georgia, serif" font-size="32" fill="#4a5568">Public cache of thinking and selected work</text>
-  <text x="96" y="520" font-family="ui-monospace, monospace" font-size="20" fill="#6b7785" letter-spacing="2">stevel3.xyz</text>
+  <text x="96" y="220" font-family="ui-monospace, monospace" font-size="28" fill="#60a5fa" letter-spacing="4">L3</text>
+  <text x="96" y="310" font-family="Georgia, serif" font-size="72" font-weight="600" fill="#e2e8f0">SteveL3</text>
+  <text x="96" y="380" font-family="Georgia, serif" font-size="32" fill="#94a3b8">Public cache of thinking and selected work</text>
+  <text x="96" y="520" font-family="ui-monospace, monospace" font-size="20" fill="#64748b" letter-spacing="2">stevel3.xyz</text>
 </svg>
