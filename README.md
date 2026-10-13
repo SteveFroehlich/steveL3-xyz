@@ -40,3 +40,6 @@ PUBLIC_CF_ANALYTICS_TOKEN=your-cloudflare-web-analytics-token
 - Output directory: `dist`
 - Node version: `22` or newer
 - Framework preset: Astro (static)
+
+## Environments
+- [DEV](https://stevel3-xyz.froehlich-405.workers.dev/)
